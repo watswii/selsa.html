@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>individu 3 selsa</title>
+    <style> table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h3 {
+            text-align: center;
+        }
+</style>
+</head>
+<body>
+    <h1 align="center">daftar cicilan barang</h1>
+    <table>
+        <tr>
+            <th rowspan="2">No</th>
+            <th rowspan="2">Nama Produk</th>
+            <th rowspan="2">Uang muka</th>
+            <th colspan="3">Cicilan</th>
+            <th rowspan="2">Total</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Televisi</td>
+            <td class="dp">700000</td>
+            <td class="cicil">600000</td>
+            <td class="cicil">600000</td>
+            <td class="cicil">600000</td>
+            <td class="total"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Kulkas</td>
+            <td class="dp">500000</td>
+            <td class="cicil">300000</td>
+            <td class="cicil">300000</td>
+            <td class="cicil">300000</td>
+            <td class="total"></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Microwave</td>
+            <td class="dp">600000</td>
+            <td class="cicil">400000</td>
+            <td class="cicil">400000</td>
+            <td class="cicil">400000</td>
+            <td class="total"></td>
+        </tr>
+    </table>
+
+    <script>
+        // Format angka ke Rupiah
+        function formatRupiah(angka) {
+            return "Rp. " + angka.toLocaleString("id-ID");
+        }
+
+        // Hitung total tiap baris
+        document.querySelectorAll("tr").forEach(function(row){
+            let dp = row.querySelector(".dp");
+            let cicilan = row.querySelectorAll(".cicil");
+            let totalCell = row.querySelector(".total");
+
+            if(dp && cicilan.length > 0 && totalCell){
+                let dpVal = parseInt(dp.textContent);
+                let total = dpVal;
+                cicilan.forEach(c => total += parseInt(c.textContent));
+
+                totalCell.textContent = formatRupiah(total);
+
+                // Format DP dan Cicilan jadi Rupiah juga
+                dp.textContent = formatRupiah(dpVal);
+                cicilan.forEach(c => c.textContent = formatRupiah(parseInt(c.textContent)));
+            }
+        });
+    </script>
+
+</body>
+</html>
